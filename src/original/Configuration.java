@@ -15,11 +15,11 @@ public class Configuration {
     protected static final int CATABOLIC_HORMONE_MIN = 52;
     protected static final double HORMONE_DIFFUSE_RATE = 0.75;
 
-    protected int intensity;
-    protected double hoursOfSleep;
-    protected int daysBetweenWorkouts;
-    protected int slowTwitchFibersPercentage;
-    protected boolean lift;
+    private int intensity;
+    private double hoursOfSleep;
+    private int daysBetweenWorkouts;
+    private int slowTwitchFibersPercentage;
+    private boolean lift;
 
     private static Configuration instance = null;
 
@@ -61,6 +61,26 @@ public class Configuration {
             throw new IllegalStateException("Instance not created yet.");
         }
         return instance;
+    }
+
+    public int getIntensity() {
+        return this.intensity;
+    }
+
+    public double getHourseOfSleep() {
+        return this.hoursOfSleep;
+    }
+
+    public int getDaysBetweenWorkouts() {
+        return this.daysBetweenWorkouts;
+    }
+
+    public int getSlowTwitchFibersPercentage() {
+        return this.slowTwitchFibersPercentage;
+    }
+
+    public boolean isLift() {
+        return this.lift;
     }
 
     public void printConfiguration() {

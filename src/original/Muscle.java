@@ -6,14 +6,18 @@ package original;
 
 public class Muscle {
 
-    protected Patch[][] patches;
+    private Patch[][] patches;
 
     public Muscle() {
-        patches = new Patch[Configuration.GRID_WIDTH][Configuration.GRID_HEIGHT];
+        this.patches = new Patch[Configuration.GRID_WIDTH][Configuration.GRID_HEIGHT];
         initialise();
     }
 
     private void initialise() {
 
+    }
+
+    public Patch getPatch(int i, int j) {
+        return this.patches[i][j];
     }
 }

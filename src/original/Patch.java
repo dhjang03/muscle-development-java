@@ -8,18 +8,13 @@ public class Patch {
 
     private static Configuration config = Configuration.getInstance();
 
-    private int coordX;
-    private int coordY;
-
-    protected MuscleFiber muscleFiber;
-    protected double anabolicHormone;
-    protected double catabolicHormone;
+    private MuscleFiber muscleFiber;
+    private double anabolicHormone;
+    private double catabolicHormone;
 
 
-    public Patch(int coordX, int coordY) {
-        this.coordX = coordX;
-        this.coordY = coordY;
-        this.muscleFiber = new MuscleFiber(coordX, coordY);
+    public Patch() {
+        this.muscleFiber = new MuscleFiber();
         this.anabolicHormone = Configuration.ANABOLIC_HORMONE_MIN;
         this.catabolicHormone = Configuration.CATABOLIC_HORMONE_MIN;
     }
@@ -42,5 +37,17 @@ public class Patch {
 
     public void developMuscle() {
 
+    }
+
+    public MuscleFiber getMuscleFiber() {
+        return this.muscleFiber;
+    }
+
+    public double getAnabolicHormone() {
+        return this.anabolicHormone;
+    }
+
+    public double getCatabolicHormone() {
+        return this.catabolicHormone;
     }
 }
