@@ -83,21 +83,34 @@ public class Configuration {
         return this.lift;
     }
 
+    public String formatConfiguration() {
+        return String.format(
+            "MODEL SETTING\n" +
+            "SlowTwitchFibersPercentage, DaysBetweenWorkout, HourseOfSleep, Intensity, Lift\n" +
+            "%d, %d, %f, %d, %s\n\n",
+            slowTwitchFibersPercentage,
+            daysBetweenWorkouts,
+            hoursOfSleep,
+            intensity,
+            lift
+        );
+    }
+
     public void printConfiguration() {
         System.out.println("Static Variables:");
-        System.out.println("MAX_TIC: " + MAX_TIC);
-        System.out.println("GRID_WIDTH: " + GRID_WIDTH);
-        System.out.println("GRID_HEIGHT: " + GRID_HEIGHT);
-        System.out.println("ANABOLIC_HORMONE_MAX: " + ANABOLIC_HORMONE_MAX);
-        System.out.println("ANABOLIC_HORMONE_MIN: " + ANABOLIC_HORMONE_MIN);
-        System.out.println("CATABOLIC_HORMONE_MAX: " + CATABOLIC_HORMONE_MAX);
-        System.out.println("CATABOLIC_HORMONE_MIN: " + CATABOLIC_HORMONE_MIN);
-        System.out.println("HORMONE_DIFFUSE_RATE: " + HORMONE_DIFFUSE_RATE);
+        System.out.println("  MAX_TIC: " + MAX_TIC);
+        System.out.println("  GRID_WIDTH: " + GRID_WIDTH);
+        System.out.println("  GRID_HEIGHT: " + GRID_HEIGHT);
+        System.out.println("  ANABOLIC_HORMONE_MAX: " + ANABOLIC_HORMONE_MAX);
+        System.out.println("  ANABOLIC_HORMONE_MIN: " + ANABOLIC_HORMONE_MIN);
+        System.out.println("  CATABOLIC_HORMONE_MAX: " + CATABOLIC_HORMONE_MAX);
+        System.out.println("  CATABOLIC_HORMONE_MIN: " + CATABOLIC_HORMONE_MIN);
+        System.out.println("  HORMONE_DIFFUSE_RATE: " + HORMONE_DIFFUSE_RATE);
         System.out.println("\nInstance Variables:");
-        System.out.println("Intensity: " + intensity);
-        System.out.println("Hours of Sleep: " + hoursOfSleep);
-        System.out.println("Days Between Workouts: " + daysBetweenWorkouts);
-        System.out.println("Slow Twitch Fibers Percentage: " + slowTwitchFibersPercentage);
-        System.out.println("Lift: " + lift);
+        System.out.println("  Intensity: " + intensity);
+        System.out.println("  Hours of Sleep: " + hoursOfSleep);
+        System.out.println("  Days Between Workouts: " + daysBetweenWorkouts);
+        System.out.println("  Slow Twitch Fibers Percentage: " + slowTwitchFibersPercentage);
+        System.out.println("  Lift: " + lift);
     }
 }
