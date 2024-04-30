@@ -16,34 +16,31 @@ package original;
 
 public class Configuration {
 
-    // constant values for simulation
-    protected static final int MAX_TIC = 1000;
-    protected static final int GRID_WIDTH = 17;
-    protected static final int GRID_HEIGHT = 17;
-    protected static final int ANABOLIC_HORMONE_MAX = 200;
-    protected static final int ANABOLIC_HORMONE_MIN = 50;
-    protected static final int CATABOLIC_HORMONE_MAX = 250;
-    protected static final int CATABOLIC_HORMONE_MIN = 52;
-    protected static final double HORMONE_DIFFUSE_RATE = 0.75;
-    protected static final int MAX_NEIGHBOUR = 8;
+    protected static final int MAX_TIC = 1000;                 // upper bound for tic
+    protected static final int GRID_WIDTH = 17;                // width of grid
+    protected static final int GRID_HEIGHT = 17;               // height of grid
+    protected static final int ANABOLIC_HORMONE_MAX = 200;     // upper bound for anabolic hormone
+    protected static final int ANABOLIC_HORMONE_MIN = 50;      // lower bound for anabolic hormone
+    protected static final int CATABOLIC_HORMONE_MAX = 250;    // upper bound for catabolic hormone
+    protected static final int CATABOLIC_HORMONE_MIN = 52;     // lower bound for catabolic hormone
+    protected static final double HORMONE_DIFFUSE_RATE = 0.75; // diffuse rate of hormones
+    protected static final int MAX_NEIGHBOUR = 8;              // maximum number of patch neighbours
 
-    // user defined values for simulation
-    private int intensity;
-    private double hoursOfSleep;
-    private int daysBetweenWorkouts;
-    private int slowTwitchFibersPercentage;
-    private boolean lift;
+    private int intensity;                  // intensity of workout
+    private double hoursOfSleep;            // hours of sleep between day
+    private int daysBetweenWorkouts;        // number of days between workout
+    private int slowTwitchFibersPercentage; // percentage of slow twitch fibers in muscle
+    private boolean lift;                   // indication whether subject do workout or not
 
-    // singleton instance
-    private static Configuration instance = null;
+    private static Configuration instance = null; // singleton instance
 
     /**
      * Construtor for Configuration setting the user defined values to the instance.
-     * @param intensity
-     * @param sleepHours
-     * @param workoutInterval
-     * @param slowTwitchFiberPercentage
-     * @param lift
+     * @param intensity intensity of workout
+     * @param sleepHours hours of sleep between day
+     * @param workoutInterval number of days between workout
+     * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
+     * @param lift indicate whether a subject do workout or not
      */
     private Configuration(
         int intensity,
@@ -61,11 +58,11 @@ public class Configuration {
 
     /**
      * Create and return Configuration instance 
-     * @param intensity
-     * @param sleepHours
-     * @param workoutInterval
-     * @param slowTwitchFiberPercentage
-     * @param lift
+     * @param intensity intensity of workout
+     * @param sleepHours hours of sleep between day
+     * @param workoutInterval number of days between workout
+     * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
+     * @param lift indicate whether a subject do workout or not
      * @return singleton Configuration instance
      */
     public static Configuration getInstance(
@@ -98,32 +95,50 @@ public class Configuration {
         return instance;
     }
 
-    // Getter for intensity
+    /**
+     * Getter method for intensity
+     * @return int value of intensity
+     */
     public int getIntensity() {
         return this.intensity;
     }
 
-    // Getter for hoursOfSleep
+    /**
+     * Getter method for hours of sleep
+     * @return double value of hours of sleep
+     */
     public double getHourseOfSleep() {
         return this.hoursOfSleep;
     }
 
-    // Getter for daysBetweenWOrkouts
+    /**
+     * Getter method days between workouts
+     * @return int value of days between workout
+     */
     public int getDaysBetweenWorkouts() {
         return this.daysBetweenWorkouts;
     }
 
-    // Getter for slowTwitchFibersPercentage
+    /**
+     * Getter method for slow twitch fiber percentage
+     * @return int value of slow twitch fibers percentage
+     */
     public int getSlowTwitchFibersPercentage() {
         return this.slowTwitchFibersPercentage;
     }
 
-    // Getter for lift
+    /**
+     * Getter method for lift
+     * @return boolean value of lift
+     */
     public boolean isLift() {
         return this.lift;
     }
 
-    // Format the user defined parameters for saving the values into CSV
+    /**
+     * Format user defined configuration value in a form that will be saved in CSV
+     * @return formatted string of user defined configuration value
+     */
     public String formatConfiguration() {
         return String.format(
             "MODEL SETTING\n" +
@@ -137,7 +152,9 @@ public class Configuration {
         );
     }
 
-    // Print parameters to console
+    /**
+     * Helper function for debugging which prints Configuration variables to console
+     */
     public void printConfiguration() {
         System.out.println("Static Variables:");
         System.out.println("  MAX_TIC: " + MAX_TIC);

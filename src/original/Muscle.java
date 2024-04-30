@@ -1,5 +1,10 @@
 /**
- * Muscle class which contains 2D array patches. 
+ * Represents a muscle as a grid of patches in a simulation environment. 
+ * Each patch in the muscle can interact with its neighbors, simulating biological 
+ * muscle characteristics.
+ * 
+ * The Muscle class contains methods to initialize the grid with specified dimensions and 
+ * retrieve information about specific patches and their neighbors.
  * 
  * @author Dong Hyeog Jang (582238)
  * @author Junheng Chen (1049540)
@@ -14,11 +19,11 @@ import java.util.ArrayList;
 
 public class Muscle {
 
-    // 2D array of patches for the muscle.
-    private Patch[][] patches;
+    private Patch[][] patches; // 2D array of patches for the muscle.
 
     /**
-     * Constructor for Muscle to initilise the pathces with grid width and height.
+     * Constructor for Muscle to initilise the pathces with grid width and height from
+     * the configuration.
      */
     public Muscle() {
         this.patches = new Patch[Configuration.GRID_WIDTH][Configuration.GRID_HEIGHT];

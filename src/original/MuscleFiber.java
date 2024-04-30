@@ -23,7 +23,7 @@ public class MuscleFiber {
 
     private Random random = new Random();
 
-    private int id;
+    private int id;             // id of the muscle fiber
     private int maxSize;        // maximum size limit for the muscle fiber
     private double fiberSize;   // current size of muscle fiber
 
@@ -96,12 +96,18 @@ public class MuscleFiber {
         }
     }
 
-    // Getter for fiber size.
+    /**
+     * Getter methods for muscle fiber's current fiber size
+     * @return double value of current fiber size
+     */
     public double getFiberSize() {
         return this.fiberSize;
     }
 
-    // Print current status of the muscle fiber to console.
+    /**
+     * Prints muscle fiber's max size and current fiber size to the console with its id
+     * for debugging purpose
+     */
     public void printMuscleFiber() {
         System.out.printf("MuscleFiber %d%n", id);
         System.out.printf("  maxSize   = %d%n", maxSize);

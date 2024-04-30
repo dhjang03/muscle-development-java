@@ -126,22 +126,34 @@ public class Patch {
         catabolicHormone -= catabolicShare * neighbours.length;
     }
 
-    // Getter for muscle fiber.
+    /**
+     * Getter methods for muscle fiber
+     * @return muscle fiber which resides in this patch
+     */
     public MuscleFiber getMuscleFiber() {
         return this.muscleFiber;
     }
 
-    // Getter for anabolic hormone.
+    /**
+     * Getter methods for anabolic hormone
+     * @return double value of current anabolic hormone level
+     */
     public double getAnabolicHormone() {
         return this.anabolicHormone;
     }
 
-    // Getter for catabolic hormone.
+    /**
+     * Getter methods for catabolic hormone
+     * @return double value of current catabolic hormone level
+     */
     public double getCatabolicHormone() {
         return this.catabolicHormone;
     }
 
-    // Print current level of anabolic and catabolic hormone to the console.
+    /**
+     * Prints coordinate of the patch and corresponding anabolic and catabolic hormone
+     * level to console for debugging purpose
+     */
     public void printPatch() {
         System.out.printf("Patch at %d %d: %n", coordX, coordY);
         System.out.printf("  anabolicHormone: %.2f%n", anabolicHormone);
