@@ -18,7 +18,6 @@ import java.util.Random;
 
 public class Patch {
 
-    private static final int MAX_NEIGHBOUR = 8;
     private static final Configuration config = Configuration.getInstance();
 
     private Random random = new Random();
@@ -109,14 +108,14 @@ public class Patch {
      * Implementation of Netlogo's diffuse function based on description sepecified on
      * https://ccl.northwestern.edu/netlogo/docs/dictionary.html#diffuse.
      */
-    public void diffuse() {
+    private void diffuse() {
         Patch[] neighbours = muscle.getNeighbours(coordX, coordY);
 
         double totalAnabolicToDiffuse = anabolicHormone * Configuration.HORMONE_DIFFUSE_RATE;
         double totalCatabolicToDiffuse = catabolicHormone * Configuration.HORMONE_DIFFUSE_RATE;
 
-        double anabolicShare = totalAnabolicToDiffuse / MAX_NEIGHBOUR;
-        double catabolicShare = totalCatabolicToDiffuse / MAX_NEIGHBOUR;
+        double anabolicShare = totalAnabolicToDiffuse / Configuration.MAX_NEIGHBOUR;
+        double catabolicShare = totalCatabolicToDiffuse / Configuration.MAX_NEIGHBOUR;
 
         for (Patch neighbour : neighbours) {
             neighbour.anabolicHormone += anabolicShare;

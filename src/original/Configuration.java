@@ -25,6 +25,7 @@ public class Configuration {
     protected static final int CATABOLIC_HORMONE_MAX = 250;
     protected static final int CATABOLIC_HORMONE_MIN = 52;
     protected static final double HORMONE_DIFFUSE_RATE = 0.75;
+    protected static final int MAX_NEIGHBOUR = 8;
 
     // user defined values for simulation
     private int intensity;
