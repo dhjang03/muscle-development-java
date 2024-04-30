@@ -11,7 +11,7 @@ javac ./src/original/*.java
 java -cp ./src original.Global --output=./output/original/output.csv --intensity=95 --hoursOfSleep=6.5 --daysBwWorkouts=5 --slowTwitchFibersPercentage=50 --lift=true
 ```
 - Adjust the parameters as required
-    - --output="path/to/output.csv"
+    - --output=path/to/output/outputname.csv
     - --intensity=(int between 50 to 100)
     - --hoursOfSleep=(double between 0.0 to 12.0)
     - --daysBwWorkouts=(int between 1 to 30)
