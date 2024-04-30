@@ -1,5 +1,14 @@
 /**
- * Global
+ * Global class responsible for running the simulation.
+ * 
+ * The class will parse command line arguments and set up the simulation accordingly then
+ * run the simulation.
+ * 
+ * @author Dong Hyeog Jang (582238)
+ * @author Junheng Chen (1049540)
+ * @author Ning Wang (1468286)
+ * 
+ * @date 1 May 2024
  */
 
 package original;
@@ -16,6 +25,10 @@ public class Global {
     private static double averageCatabolic;
     private static Configuration config;
 
+    /**
+     * Set up the simulation to be run.
+     * @param muscle the muscle which will be inspected.
+     */
     public static void setUp(Muscle muscle) {
         tic = 0;
         totalGrid = Configuration.GRID_WIDTH * Configuration.GRID_HEIGHT;
@@ -41,6 +54,10 @@ public class Global {
         averageCatabolic = sumCatabolic / totalGrid;
     }
 
+    /**
+     * Run the simulation.
+     * @param muscle the muscle which will be inspected.
+     */
     public static void go(Muscle muscle) {
         double sumMuscleMass = 0;
         double sumAnabolic = 0;
@@ -71,6 +88,14 @@ public class Global {
         averageCatabolic = sumCatabolic / totalGrid;
     }
 
+    /**
+     * Create singleton insatnce of Configuration
+     * @param intensity
+     * @param hoursOfSleep
+     * @param daysBwWorkouts
+     * @param slowTwitchFibersPercentage
+     * @param lift
+     */
     public static void loadConfig(
         int intensity,
         double hoursOfSleep,
@@ -87,6 +112,11 @@ public class Global {
         );
     }
 
+    /**
+     * Format the current tic, muscleMass, average anabolic and catabolic into String to
+     * save it into CSV.
+     * @return formatted string with tic, muscleMass, averageAnabolic, averageCatabolic
+     */
     public static String formatCurrentStatus() {
         return String.format(
             "%d, %f, %f, %f\n",
@@ -97,6 +127,7 @@ public class Global {
     }
 
     public static void main(String[] args) {
+        // command line arguments that will be parsed.
         String path = null;
         Integer intensity = null;
         Double hoursOfSleep = null;
@@ -104,6 +135,7 @@ public class Global {
         Integer slowTwitchFibersPercentage = null;
         Boolean lift = null;
 
+        // parse command line arguments.
         for (String arg : args) {
             if (arg.startsWith("--output=")) {
                 path = arg.split("=")[1];
@@ -120,22 +152,26 @@ public class Global {
             }
         }
 
+        // create Configuration with parameters obtained from CLI.
         loadConfig(intensity, hoursOfSleep, daysBwWorkouts, slowTwitchFibersPercentage, lift);
 
+        // set up the simulation
         Muscle muscle = new Muscle();
         setUp(muscle);
 
         try {
+            // prepare writer to save results for each stage.
             FileWriter writer = new FileWriter(path);
-
             writer.append(config.formatConfiguration());
             writer.append("Tic, MuscleMass, Anabolic, Catabolic\n");
             writer.append(formatCurrentStatus());
 
+            // Run the simulation
             while (tic < Configuration.MAX_TIC) {
                 go(muscle);
                 tic++;
                 
+                // save the current status to output file
                 writer.append(formatCurrentStatus());
             }
 
@@ -145,6 +181,5 @@ public class Global {
             System.out.println("IO Exception occured during creating/saving/closing FileWriter");
             e.getStackTrace();
         }
-
     }
 }

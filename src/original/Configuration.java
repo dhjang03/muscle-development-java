@@ -1,11 +1,22 @@
 /**
+ * Configuration for the model that is used for simulation.
  * 
+ * The configuration class is a singleton class to ensure every other class use
+ * same parameter values. The class contains constant value for the simulation as well as
+ * user defined values from command line interface.
+ * 
+ * @author Dong Hyeog Jang (582238)
+ * @author Junheng Chen (1049540)
+ * @author Ning Wang (1468286)
+ * 
+ * @date 1 May 2024
  */
 
 package original;
 
 public class Configuration {
 
+    // constant values for simulation
     protected static final int MAX_TIC = 1000;
     protected static final int GRID_WIDTH = 17;
     protected static final int GRID_HEIGHT = 17;
@@ -15,14 +26,24 @@ public class Configuration {
     protected static final int CATABOLIC_HORMONE_MIN = 52;
     protected static final double HORMONE_DIFFUSE_RATE = 0.75;
 
+    // user defined values for simulation
     private int intensity;
     private double hoursOfSleep;
     private int daysBetweenWorkouts;
     private int slowTwitchFibersPercentage;
     private boolean lift;
 
+    // singleton instance
     private static Configuration instance = null;
 
+    /**
+     * Construtor for Configuration setting the user defined values to the instance.
+     * @param intensity
+     * @param sleepHours
+     * @param workoutInterval
+     * @param slowTwitchFiberPercentage
+     * @param lift
+     */
     private Configuration(
         int intensity,
         double sleepHours,
@@ -37,6 +58,15 @@ public class Configuration {
         this.lift = lift;
     }
 
+    /**
+     * Create and return Configuration instance 
+     * @param intensity
+     * @param sleepHours
+     * @param workoutInterval
+     * @param slowTwitchFiberPercentage
+     * @param lift
+     * @return singleton Configuration instance
+     */
     public static Configuration getInstance(
         int intensity,
         double sleepHours,
@@ -56,6 +86,10 @@ public class Configuration {
         return instance;
     }
 
+    /**
+     * Get singleton instance of the Configuration.
+     * @return singleton Configuration instance
+     */
     public static Configuration getInstance() {
         if (instance == null) {
             throw new IllegalStateException("Instance not created yet.");
@@ -63,26 +97,32 @@ public class Configuration {
         return instance;
     }
 
+    // Getter for intensity
     public int getIntensity() {
         return this.intensity;
     }
 
+    // Getter for hoursOfSleep
     public double getHourseOfSleep() {
         return this.hoursOfSleep;
     }
 
+    // Getter for daysBetweenWOrkouts
     public int getDaysBetweenWorkouts() {
         return this.daysBetweenWorkouts;
     }
 
+    // Getter for slowTwitchFibersPercentage
     public int getSlowTwitchFibersPercentage() {
         return this.slowTwitchFibersPercentage;
     }
 
+    // Getter for lift
     public boolean isLift() {
         return this.lift;
     }
 
+    // Format the user defined parameters for saving the values into CSV
     public String formatConfiguration() {
         return String.format(
             "MODEL SETTING\n" +
@@ -96,6 +136,7 @@ public class Configuration {
         );
     }
 
+    // Print parameters to console
     public void printConfiguration() {
         System.out.println("Static Variables:");
         System.out.println("  MAX_TIC: " + MAX_TIC);
