@@ -9,7 +9,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 1 May 2024
+ * @date 2 May 2024
  */
 
 package original;
@@ -36,6 +36,7 @@ public class MuscleFiber {
         this.id = nextId++;
         this.maxSize = sproutMuscleFiber();
         this.fiberSize = initFiberSize();
+        regulateMuscleFiber();
     }
 
     /**

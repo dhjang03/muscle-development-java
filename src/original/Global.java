@@ -8,7 +8,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 1 May 2024
+ * @date 2 May 2024
  */
 
 package original;
@@ -19,7 +19,6 @@ import java.io.IOException;
 public class Global {
 
     private static int tic;                 // indicate iteration step of simulation
-    private static int totalGrid;           // total number of grid in muscle
     private static double muscleMass;       // sum of muscle fiber size divided by 100
     private static double averageAnabolic;  // average anabolic hormone level in muscle
     private static double averageCatabolic; // average catabolic hormone level in muscle
@@ -29,29 +28,17 @@ public class Global {
      * Set up the simulation to be run.
      * @param muscle the muscle which will be inspected.
      */
-    public static void setUp(Muscle muscle) {
+    public static Muscle setUp() {
         tic = 0;
-        totalGrid = Configuration.GRID_WIDTH * Configuration.GRID_HEIGHT;
     
-        double sumMuscleMass = 0;
-        double sumAnabolic = 0;
-        double sumCatabolic = 0;
-
-        for (int i = 0; i < Configuration.GRID_WIDTH; i++) {
-            for (int j = 0; j < Configuration.GRID_HEIGHT; j++) {
-                Patch patch = muscle.getPatch(i, j);
-
-                patch.regulateHormones();
-
-                sumAnabolic += patch.getAnabolicHormone();
-                sumCatabolic += patch.getCatabolicHormone();
-                sumMuscleMass += patch.getMuscleFiber().getFiberSize();
-            }
-        }
+        Muscle muscle = new Muscle();
+        muscle.triggerRegulateHormones();
         
-        muscleMass = sumMuscleMass / 100;
-        averageAnabolic = sumAnabolic / totalGrid;
-        averageCatabolic = sumCatabolic / totalGrid;
+        muscleMass = muscle.getMuscleMass();
+        averageAnabolic = muscle.getAverageAnabolicHormone();
+        averageCatabolic = muscle.getAverageCatabolicHormone();
+
+        return muscle;
     }
 
     /**
@@ -59,32 +46,19 @@ public class Global {
      * @param muscle the muscle which will be inspected.
      */
     public static void go(Muscle muscle) {
-        double sumMuscleMass = 0;
-        double sumAnabolic = 0;
-        double sumCatabolic = 0;
+        muscle.triggerDailyActivity();
 
-        for (int i = 0; i < Configuration.GRID_WIDTH; i++) {
-            for (int j = 0; j < Configuration.GRID_HEIGHT; j++) {
-                Patch patch = muscle.getPatch(i, j);
-                patch.performDailyActivity();
-
-                if (config.isLift() && tic % config.getDaysBetweenWorkouts() == 0) {
-                    patch.liftWeight();
-                }
-
-                patch.sleep();
-                patch.regulateHormones();
-                patch.developMuscle();
-
-                sumAnabolic += patch.getAnabolicHormone();
-                sumCatabolic += patch.getCatabolicHormone();
-                sumMuscleMass += patch.getMuscleFiber().getFiberSize();
-            }
+        if (config.isLift() && tic % config.getDaysBetweenWorkouts() == 0) {
+            muscle.triggerLiftWeight();
         }
 
-        muscleMass = sumMuscleMass / 100;
-        averageAnabolic = sumAnabolic / totalGrid;
-        averageCatabolic = sumCatabolic / totalGrid;
+        muscle.triggerSleep();
+        muscle.triggerRegulateHormones();
+        muscle.triggerDevelopMuscle();
+
+        muscleMass = muscle.getMuscleMass();
+        averageAnabolic = muscle.getAverageAnabolicHormone();
+        averageCatabolic = muscle.getAverageCatabolicHormone();
     }
 
     /**
@@ -170,8 +144,7 @@ public class Global {
         loadConfig(intensity, hoursOfSleep, daysBwWorkouts, slowTwitchFibersPercentage, lift);
 
         // set up the simulation
-        Muscle muscle = new Muscle();
-        setUp(muscle);
+        Muscle muscle = setUp();
 
         try {
             // prepare writer to save results for each stage.

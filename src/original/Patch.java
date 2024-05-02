@@ -9,7 +9,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 1 May 2024
+ * @date 2 May 2024
  */
 
 package original;
@@ -52,6 +52,19 @@ public class Patch {
     }
 
     /**
+     * Copy constructor for creating a new Patch object from an existing one.
+     * @param other The Patch object to copy from.
+     */
+    public Patch(Patch other) {
+        this.muscle = other.muscle;
+        this.coordX = other.coordX;
+        this.coordY = other.coordY;
+        this.muscleFiber = other.muscleFiber;
+        this.anabolicHormone = other.anabolicHormone;
+        this.catabolicHormone = other.catabolicHormone;
+    }
+
+    /**
      * Simulates the effect of daily activities on the hormone levels.
      * Increases both anabolic and catabolic hormones proportionally to the muscle fiber size.
      */
@@ -65,7 +78,7 @@ public class Patch {
      * Hormone levels are increased based on the intensity and muscle fiber size.
      */
     public void liftWeight() {
-        double intensity = config.getIntensity() / 100;
+        double intensity = (double) config.getIntensity() / 100;
         double threshold = intensity * intensity;
 
         if (random.nextDouble() < threshold) {
@@ -97,33 +110,10 @@ public class Patch {
      * Hormones are adjusted to stay within predefined maximum and minimum thresholds.
      */
     public void regulateHormones() {
-        diffuse();
         anabolicHormone = Math.min(anabolicHormone, Configuration.ANABOLIC_HORMONE_MAX);
         anabolicHormone = Math.max(anabolicHormone, Configuration.ANABOLIC_HORMONE_MIN);
         catabolicHormone = Math.min(catabolicHormone, Configuration.CATABOLIC_HORMONE_MAX);
         catabolicHormone = Math.max(catabolicHormone, Configuration.CATABOLIC_HORMONE_MIN);
-    }
-
-    /**
-     * Implementation of Netlogo's diffuse function based on description sepecified on
-     * https://ccl.northwestern.edu/netlogo/docs/dictionary.html#diffuse.
-     */
-    private void diffuse() {
-        Patch[] neighbours = muscle.getNeighbours(coordX, coordY);
-
-        double totalAnabolicToDiffuse = anabolicHormone * Configuration.HORMONE_DIFFUSE_RATE;
-        double totalCatabolicToDiffuse = catabolicHormone * Configuration.HORMONE_DIFFUSE_RATE;
-
-        double anabolicShare = totalAnabolicToDiffuse / Configuration.MAX_NEIGHBOUR;
-        double catabolicShare = totalCatabolicToDiffuse / Configuration.MAX_NEIGHBOUR;
-
-        for (Patch neighbour : neighbours) {
-            neighbour.anabolicHormone += anabolicShare;
-            neighbour.catabolicHormone += catabolicShare;
-        }
-
-        anabolicHormone -= anabolicShare * neighbours.length;
-        catabolicHormone -= catabolicShare * neighbours.length;
     }
 
     /**
@@ -148,6 +138,38 @@ public class Patch {
      */
     public double getCatabolicHormone() {
         return this.catabolicHormone;
+    }
+
+    /**
+     * Increase level of anabolic hormome base on the amount given
+     * @param amount amount diffused from neighbour
+     */
+    public void increaseAnabolicHormone(double amount) {
+        this.anabolicHormone += amount;
+    }
+
+    /**
+     * Increase level of catabolic hormone base on the amount given
+     * @param amount amount diffused from neighbour
+     */
+    public void increaseCatabolicHormone(double amount) {
+        this.catabolicHormone += amount;
+    }
+
+    /**
+     * Decrease level of anabolic hormone base on the amount given
+     * @param amount amount to decrease the level
+     */
+    public void decreaseAnabolicHormone(double amount) {
+        this.anabolicHormone -= amount;
+    }
+
+    /**
+     * Decrease level of catabolic hormone base on the amount given
+     * @param amount amount to decrease the level
+     */
+    public void decreaseCatabolicHormone(double amount) {
+        this.catabolicHormone -= amount;
     }
 
     /**
