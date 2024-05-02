@@ -8,7 +8,7 @@ javac ./src/original/*.java
 ```
 3. Run the model with following command:
 ```
-java -cp ./src original.Global --output=./output/original/output.csv --intensity=95 --hoursOfSleep=6.5 --daysBwWorkouts=5 --slowTwitchFibersPercentage=50 --lift=true
+java -cp ./src original.Global --output=./output/original/output.csv --intensity=95 --hoursOfSleep=8.0 --daysBwWorkouts=5 --slowTwitchFibersPercentage=50 --lift=true
 ```
 - Adjust the parameters as required
     - --output=path/to/output/outputname.csv
