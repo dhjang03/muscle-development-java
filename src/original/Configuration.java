@@ -16,7 +16,7 @@ package original;
 
 public class Configuration {
 
-    protected static final int MAX_TIC = 1000;                 // upper bound for tic
+    protected static final int MAX_TIC = 3000;                 // upper bound for tic
     protected static final int GRID_WIDTH = 17;                // width of grid
     protected static final int GRID_HEIGHT = 17;               // height of grid
     protected static final int ANABOLIC_HORMONE_MAX = 200;     // upper bound for anabolic hormone

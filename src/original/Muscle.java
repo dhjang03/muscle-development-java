@@ -20,8 +20,6 @@ import java.util.function.Consumer;
 
 public class Muscle {
     
-    private static final Configuration config = Configuration.getInstance();
-
     private Patch[][] patches; // 2D array of patches for the muscle.
     private int totalGrid;
 
