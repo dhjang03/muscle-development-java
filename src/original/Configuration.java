@@ -9,7 +9,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 1 May 2024
+ * @date 4 May 2024
  */
 
 package original;
@@ -36,6 +36,7 @@ public class Configuration {
 
     /**
      * Construtor for Configuration setting the user defined values to the instance.
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
@@ -57,12 +58,14 @@ public class Configuration {
     }
 
     /**
-     * Create and return Configuration instance 
+     * Create and return Configuration instance
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
      * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
      * @param lift indicate whether a subject do workout or not
+     * 
      * @return singleton Configuration instance
      */
     public static Configuration getInstance(
@@ -86,6 +89,7 @@ public class Configuration {
 
     /**
      * Get singleton instance of the Configuration.
+     * 
      * @return singleton Configuration instance
      */
     public static Configuration getInstance() {
@@ -97,6 +101,7 @@ public class Configuration {
 
     /**
      * Getter method for intensity
+     * 
      * @return int value of intensity
      */
     public int getIntensity() {
@@ -105,6 +110,7 @@ public class Configuration {
 
     /**
      * Getter method for hours of sleep
+     * 
      * @return double value of hours of sleep
      */
     public double getHourseOfSleep() {
@@ -113,6 +119,7 @@ public class Configuration {
 
     /**
      * Getter method days between workouts
+     * 
      * @return int value of days between workout
      */
     public int getDaysBetweenWorkouts() {
@@ -121,6 +128,7 @@ public class Configuration {
 
     /**
      * Getter method for slow twitch fiber percentage
+     * 
      * @return int value of slow twitch fibers percentage
      */
     public int getSlowTwitchFibersPercentage() {
@@ -129,6 +137,7 @@ public class Configuration {
 
     /**
      * Getter method for lift
+     * 
      * @return boolean value of lift
      */
     public boolean isLift() {
@@ -137,6 +146,7 @@ public class Configuration {
 
     /**
      * Format user defined configuration value in a form that will be saved in CSV
+     * 
      * @return formatted string of user defined configuration value
      */
     public String formatConfiguration() {

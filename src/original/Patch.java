@@ -9,7 +9,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 2 May 2024
+ * @date 4 May 2024
  */
 
 package original;
@@ -53,6 +53,7 @@ public class Patch {
 
     /**
      * Copy constructor for creating a new Patch object from an existing one.
+     * 
      * @param other The Patch object to copy from.
      */
     public Patch(Patch other) {
@@ -118,6 +119,7 @@ public class Patch {
 
     /**
      * Getter methods for muscle fiber
+     * 
      * @return muscle fiber which resides in this patch
      */
     public MuscleFiber getMuscleFiber() {
@@ -126,6 +128,7 @@ public class Patch {
 
     /**
      * Getter methods for anabolic hormone
+     * 
      * @return double value of current anabolic hormone level
      */
     public double getAnabolicHormone() {
@@ -134,6 +137,7 @@ public class Patch {
 
     /**
      * Getter methods for catabolic hormone
+     * 
      * @return double value of current catabolic hormone level
      */
     public double getCatabolicHormone() {
@@ -150,6 +154,7 @@ public class Patch {
 
     /**
      * Increase level of catabolic hormone base on the amount given
+     * 
      * @param amount amount diffused from neighbour
      */
     public void increaseCatabolicHormone(double amount) {
@@ -158,6 +163,7 @@ public class Patch {
 
     /**
      * Decrease level of anabolic hormone base on the amount given
+     * 
      * @param amount amount to decrease the level
      */
     public void decreaseAnabolicHormone(double amount) {
@@ -166,6 +172,7 @@ public class Patch {
 
     /**
      * Decrease level of catabolic hormone base on the amount given
+     * 
      * @param amount amount to decrease the level
      */
     public void decreaseCatabolicHormone(double amount) {

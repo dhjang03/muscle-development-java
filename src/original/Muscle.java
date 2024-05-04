@@ -10,7 +10,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 2 May 2024
+ * @date 4 May 2024
  */
 
 package original;
@@ -82,6 +82,7 @@ public class Muscle {
 
     /**
      * Wrapper function to perform various action on each patch
+     * 
      * @param action action that will be performed
      */
     private void forEachPatch(Consumer<Patch> action) {
@@ -118,6 +119,7 @@ public class Muscle {
 
     /**
      * Calculate amount to be shared to the neighbours with given patch
+     * 
      * @param patch deep copied patches array
      * @param shares double array to store the share
      */
@@ -145,6 +147,7 @@ public class Muscle {
 
     /**
      * Get patch from patches with given coordinate.
+     * 
      * @param i x coordinate of the patch
      * @param j y coordinate of the patch
      * @return patch at given coordinate
@@ -159,6 +162,7 @@ public class Muscle {
 
     /**
      * Find neighbouring patches for given coordinate.
+     * 
      * @param i x coordinate of the patch
      * @param j y coordinate of the patch
      * @return array of neighbouring patches
@@ -183,6 +187,7 @@ public class Muscle {
 
     /**
      * Calculate average anabolic hormone level
+     * 
      * @return current average anabolic hormone level of patches
      */
     public double getAverageAnabolicHormone() {
@@ -199,6 +204,7 @@ public class Muscle {
 
     /**
      * Calculate average catabolic hormone level
+     * 
      * @return current average catabolic hormone level of patches
      */
     public double getAverageCatabolicHormone() {
@@ -215,6 +221,7 @@ public class Muscle {
 
     /**
      * Calculate total size of muscle fibers in muscle
+     * 
      * @return total size of muscle fibers divided by 100
      */
     public double getMuscleMass() {

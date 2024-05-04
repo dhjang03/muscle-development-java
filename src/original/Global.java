@@ -8,7 +8,7 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 2 May 2024
+ * @date 4 May 2024
  */
 
 package original;
@@ -26,7 +26,8 @@ public class Global {
 
     /**
      * Set up the simulation to be run.
-     * @param muscle the muscle which will be inspected.
+     * 
+     * @return muscle the muscle which will be inspected.
      */
     public static Muscle setUp() {
         tic = 0;
@@ -43,6 +44,7 @@ public class Global {
 
     /**
      * Run the simulation.
+     * 
      * @param muscle the muscle which will be inspected.
      */
     public static void go(Muscle muscle) {
@@ -63,6 +65,7 @@ public class Global {
 
     /**
      * Create singleton insatnce of Configuration
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
@@ -88,6 +91,7 @@ public class Global {
     /**
      * Format the current tic, muscleMass, average anabolic and catabolic into String to
      * save it into CSV.
+     * 
      * @return formatted string with tic, muscleMass, averageAnabolic, averageCatabolic
      */
     public static String formatCurrentStatus() {
