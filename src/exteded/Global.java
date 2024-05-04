@@ -26,7 +26,8 @@ public class Global {
 
     /**
      * Set up the simulation to be run.
-     * @param muscle the muscle which will be inspected.
+     * 
+     * @return muscle the muscle which will be inspected.
      */
     public static Muscle setUp() {
         tic = 0;
@@ -43,6 +44,7 @@ public class Global {
 
     /**
      * Run the simulation.
+     * 
      * @param muscle the muscle which will be inspected.
      */
     public static void go(Muscle muscle) {
@@ -52,6 +54,7 @@ public class Global {
             muscle.triggerLiftWeight();
         }
 
+        muscle.triggerEat();
         muscle.triggerSleep();
         muscle.triggerRegulateHormones();
         muscle.triggerDevelopMuscle();
@@ -63,31 +66,36 @@ public class Global {
 
     /**
      * Create singleton insatnce of Configuration
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
      * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
      * @param lift indicate whether a subject do workout or not
+     * @param nutritionQuality quality of nutrition
      */
     public static void loadConfig(
         int intensity,
         double hoursOfSleep,
         int daysBwWorkouts,
         int slowTwitchFibersPercentage,
-        boolean lift
+        boolean lift,
+        double nutritionQuality
     ) {
         config = Configuration.getInstance(
             intensity,
             hoursOfSleep,
             daysBwWorkouts,
             slowTwitchFibersPercentage,
-            lift
+            lift,
+            nutritionQuality
         );
     }
 
     /**
      * Format the current tic, muscleMass, average anabolic and catabolic into String to
      * save it into CSV.
+     * 
      * @return formatted string with tic, muscleMass, averageAnabolic, averageCatabolic
      */
     public static String formatCurrentStatus() {
@@ -111,6 +119,7 @@ public class Global {
      *  --daysBwWorkouts=[daysBetweenWorkouts]     Days between workouts as an integer
      *  --slowTwitchFibersPercentage=[percentage]  Slow twitch fibers % in muscle as an integer
      *  --lift=[true|false]                        Indicates whether a subject do lift or not
+     *  --nutritionQuality=[nutritionQuality]      Quality of nutrition as double
      *
      * @param args the command line arguments used to configure the simulation parameters.
      */
@@ -122,6 +131,7 @@ public class Global {
         Integer daysBwWorkouts = null;
         Integer slowTwitchFibersPercentage = null;
         Boolean lift = null;
+        Double nutritionQuality = null;
 
         // parse command line arguments.
         for (String arg : args) {
@@ -137,11 +147,20 @@ public class Global {
                 slowTwitchFibersPercentage = Integer.parseInt(arg.split("=")[1]);
             } else if (arg.startsWith("--lift=")) {
                 lift = Boolean.parseBoolean(arg.split("=")[1]);
+            } else if (arg.startsWith("--nutritionQuality=")) {
+                nutritionQuality = Double.parseDouble(arg.split("=")[1]);
             }
         }
 
         // create Configuration with parameters obtained from CLI.
-        loadConfig(intensity, hoursOfSleep, daysBwWorkouts, slowTwitchFibersPercentage, lift);
+        loadConfig(
+            intensity,
+            hoursOfSleep,
+            daysBwWorkouts, 
+            slowTwitchFibersPercentage,
+            lift,
+            nutritionQuality
+        );
 
         // set up the simulation
         Muscle muscle = setUp();

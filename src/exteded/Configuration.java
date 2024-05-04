@@ -31,38 +31,46 @@ public class Configuration {
     private int daysBetweenWorkouts;        // number of days between workout
     private int slowTwitchFibersPercentage; // percentage of slow twitch fibers in muscle
     private boolean lift;                   // indication whether subject do workout or not
+    private double nutritionQuality;        // quality of nutrition
 
     private static Configuration instance = null; // singleton instance
 
     /**
      * Construtor for Configuration setting the user defined values to the instance.
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
      * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
      * @param lift indicate whether a subject do workout or not
+     * @param nutritionQuality quality of nutrition
      */
     private Configuration(
         int intensity,
         double sleepHours,
         int workoutInterval,
         int slowTwitchFiberPercentage,
-        boolean lift
+        boolean lift,
+        double nutritionQuality
     ) {
         this.intensity = intensity;
         this.hoursOfSleep = sleepHours;
         this.daysBetweenWorkouts = workoutInterval;
         this.slowTwitchFibersPercentage = slowTwitchFiberPercentage;
         this.lift = lift;
+        this.nutritionQuality = nutritionQuality;
     }
 
     /**
      * Create and return Configuration instance 
+     * 
      * @param intensity intensity of workout
      * @param sleepHours hours of sleep between day
      * @param workoutInterval number of days between workout
      * @param slowTwitchFiberPercentage percentage of slow twitch fibers in muscle
      * @param lift indicate whether a subject do workout or not
+     * @param nutritionQuality quality of nutrition
+     * 
      * @return singleton Configuration instance
      */
     public static Configuration getInstance(
@@ -70,7 +78,8 @@ public class Configuration {
         double sleepHours,
         int workoutInterval,
         int slowTwitchFiberPercentage,
-        boolean lift
+        boolean lift,
+        double nutritionQuality
     ) {
         if (instance == null) {
             instance = new Configuration(
@@ -78,7 +87,8 @@ public class Configuration {
                 sleepHours,
                 workoutInterval,
                 slowTwitchFiberPercentage,
-                lift
+                lift,
+                nutritionQuality
             );
         }
         return instance;
@@ -86,6 +96,7 @@ public class Configuration {
 
     /**
      * Get singleton instance of the Configuration.
+     * 
      * @return singleton Configuration instance
      */
     public static Configuration getInstance() {
@@ -97,6 +108,7 @@ public class Configuration {
 
     /**
      * Getter method for intensity
+     * 
      * @return int value of intensity
      */
     public int getIntensity() {
@@ -105,6 +117,7 @@ public class Configuration {
 
     /**
      * Getter method for hours of sleep
+     * 
      * @return double value of hours of sleep
      */
     public double getHourseOfSleep() {
@@ -113,6 +126,7 @@ public class Configuration {
 
     /**
      * Getter method days between workouts
+     * 
      * @return int value of days between workout
      */
     public int getDaysBetweenWorkouts() {
@@ -121,6 +135,7 @@ public class Configuration {
 
     /**
      * Getter method for slow twitch fiber percentage
+     * 
      * @return int value of slow twitch fibers percentage
      */
     public int getSlowTwitchFibersPercentage() {
@@ -129,6 +144,7 @@ public class Configuration {
 
     /**
      * Getter method for lift
+     * 
      * @return boolean value of lift
      */
     public boolean isLift() {
@@ -136,19 +152,31 @@ public class Configuration {
     }
 
     /**
+     * Getter method for nutrition quality
+     * 
+     * @return double value of nutrition quality
+     */
+    public double getNutritionQuality() {
+        return this.nutritionQuality;
+    }
+
+    /**
      * Format user defined configuration value in a form that will be saved in CSV
+     * 
      * @return formatted string of user defined configuration value
      */
     public String formatConfiguration() {
         return String.format(
             "MODEL SETTING\n" +
-            "SlowTwitchFibersPercentage, DaysBetweenWorkout, HourseOfSleep, Intensity, Lift\n" +
-            "%d, %d, %f, %d, %s\n\n",
+            "SlowTwitchFibersPercentage, DaysBetweenWorkout, HourseOfSleep, " +
+            "Intensity, Lift, NutritionQualitry\n" +
+            "%d, %d, %f, %d, %s, %f\n\n",
             slowTwitchFibersPercentage,
             daysBetweenWorkouts,
             hoursOfSleep,
             intensity,
-            lift
+            lift,
+            nutritionQuality
         );
     }
 

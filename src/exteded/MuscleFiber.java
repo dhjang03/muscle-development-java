@@ -29,6 +29,7 @@ public class MuscleFiber {
 
     /**
      * Constructs a MuscleFiber object with a unique ID, and initializes its size parameters.
+     * 
      * The maximum size is determined through a stochastic process influenced by the percentage
      * of slow twitch fibers.
      */
@@ -41,8 +42,10 @@ public class MuscleFiber {
 
     /**
      * Determines the initial maximum size of the muscle fiber using a random process.
+     * 
      * The size is increased based on the probability determined by the percentage of
      * slow twitch fibers.
+     * 
      * @return the sprouted maximum size of the muscle fiber.
      */
     private int sproutMuscleFiber() {
@@ -57,6 +60,7 @@ public class MuscleFiber {
 
     /**
      * Initializes the current size of the muscle fiber as a fraction of its maximum size.
+     * 
      * @return the initial size of the muscle fiber.
      */
     private double initFiberSize() {
@@ -65,8 +69,10 @@ public class MuscleFiber {
 
     /**
      * Simulates the growth of the muscle fiber based on the levels of hormones.
+     * 
      * The size decrease with catabolic hormone level and increase with respect to 
      * anabolic and catabolic hormone level.
+     * 
      * @param anabolicHormone current level of anabolic hormones.
      * @param catabolicHormone current level of catabolic hormones.
      */
@@ -83,6 +89,7 @@ public class MuscleFiber {
 
     /**
      * Ensures that the muscle fiber's size does not exceed its maximum or fall below 1.
+     * 
      * This method acts as a regulatory mechanism to maintain fiber size within realistic bounds.
      */
     public void regulateMuscleFiber() {
@@ -99,6 +106,7 @@ public class MuscleFiber {
 
     /**
      * Getter methods for muscle fiber's current fiber size
+     * 
      * @return double value of current fiber size
      */
     public double getFiberSize() {

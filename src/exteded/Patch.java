@@ -53,6 +53,7 @@ public class Patch {
 
     /**
      * Copy constructor for creating a new Patch object from an existing one.
+     * 
      * @param other The Patch object to copy from.
      */
     public Patch(Patch other) {
@@ -66,6 +67,7 @@ public class Patch {
 
     /**
      * Simulates the effect of daily activities on the hormone levels.
+     * 
      * Increases both anabolic and catabolic hormones proportionally to the muscle fiber size.
      */
     public void performDailyActivity() {
@@ -75,6 +77,7 @@ public class Patch {
 
     /**
      * Simulates the effect of weight lifting on the hormone levels.
+     * 
      * Hormone levels are increased based on the intensity and muscle fiber size.
      */
     public void liftWeight() {
@@ -88,7 +91,24 @@ public class Patch {
     }
 
     /**
+     * Simulates the effect of quality of nutrition intake on the hormone levels.
+     * 
+     * Hormone levels are increased or decreased depending on the quality of nutrition. The effect
+     * of Nutrition quality vary base on the value as follow:
+     *   - nutritionQuality = 0.5: Average quality which will have no impact on hormone level
+     *   - nutritionQuality < 0.5: Poor quality will have negative impact on anabolic hormone
+     *                             and positive impact on catabolic hormone
+     *   - nutritionQuality > 0.5: Good quality will have positive impact on anabolic hormone
+     *                             and negative impact on catabolic hormone
+     * 
+     */
+    public void eat() {
+        //TODO: Implement Logic
+    }
+
+    /**
      * Simulates hormone regulation during sleep.
+     * 
      * Decreases both anabolic and catabolic hormones based on the number of hours of sleep.
      */
     public void sleep() {
@@ -98,6 +118,7 @@ public class Patch {
 
     /**
      * Facilitates growth and regulation of the muscle fiber within the patch.
+     * 
      * Uses the current levels of hormones to influence muscle fiber growth and regulation.
      */
     public void developMuscle() {
@@ -107,6 +128,7 @@ public class Patch {
 
     /**
      * Regulates the hormone levels to ensure they remain within physiological limits.
+     * 
      * Hormones are adjusted to stay within predefined maximum and minimum thresholds.
      */
     public void regulateHormones() {
@@ -118,6 +140,7 @@ public class Patch {
 
     /**
      * Getter methods for muscle fiber
+     * 
      * @return muscle fiber which resides in this patch
      */
     public MuscleFiber getMuscleFiber() {
@@ -126,6 +149,7 @@ public class Patch {
 
     /**
      * Getter methods for anabolic hormone
+     * 
      * @return double value of current anabolic hormone level
      */
     public double getAnabolicHormone() {
@@ -134,6 +158,7 @@ public class Patch {
 
     /**
      * Getter methods for catabolic hormone
+     * 
      * @return double value of current catabolic hormone level
      */
     public double getCatabolicHormone() {
@@ -142,6 +167,7 @@ public class Patch {
 
     /**
      * Increase level of anabolic hormome base on the amount given
+     * 
      * @param amount amount diffused from neighbour
      */
     public void increaseAnabolicHormone(double amount) {
@@ -150,6 +176,7 @@ public class Patch {
 
     /**
      * Increase level of catabolic hormone base on the amount given
+     * 
      * @param amount amount diffused from neighbour
      */
     public void increaseCatabolicHormone(double amount) {
@@ -158,6 +185,7 @@ public class Patch {
 
     /**
      * Decrease level of anabolic hormone base on the amount given
+     * 
      * @param amount amount to decrease the level
      */
     public void decreaseAnabolicHormone(double amount) {
@@ -166,6 +194,7 @@ public class Patch {
 
     /**
      * Decrease level of catabolic hormone base on the amount given
+     * 
      * @param amount amount to decrease the level
      */
     public void decreaseCatabolicHormone(double amount) {
