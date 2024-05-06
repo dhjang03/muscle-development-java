@@ -8,10 +8,10 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 4 May 2024
+ * @date 6 May 2024
  */
 
-package exteded;
+package extended;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class Global {
     /**
      * Set up the simulation to be run.
      * 
-     * @return muscle the muscle which will be inspected.
+     * @return muscle object will be inspected.
      */
     public static Muscle setUp() {
         tic = 0;

@@ -9,10 +9,10 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 4 May 2024
+ * @date 6 May 2024
  */
 
-package exteded;
+package extended;
 
 import java.util.Random;
 
@@ -101,9 +101,18 @@ public class Patch {
      *   - nutritionQuality > 0.5: Good quality will have positive impact on anabolic hormone
      *                             and negative impact on catabolic hormone
      * 
+     * The hormone level is regulated with the use of sigmoid function with a constant to skew
+     * the function to have 0 value when nutrition quality is equal to 0.
      */
     public void eat() {
-        //TODO: Implement Logic
+        // offset value to have no effect when nutrition quality equals to 0.5
+        double offset = 1 / (1 + Math.exp(-0.5));
+
+        // amount of hormone level that needs to be changed.
+        double delta = (1 / (1 + Math.exp(-config.getNutritionQuality()))) - offset;
+
+        anabolicHormone += anabolicHormone * delta;
+        catabolicHormone -= catabolicHormone * delta;
     }
 
     /**

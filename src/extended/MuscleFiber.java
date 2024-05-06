@@ -9,10 +9,10 @@
  * @author Junheng Chen (1049540)
  * @author Ning Wang (1468286)
  * 
- * @date 4 May 2024
+ * @date 6 May 2024
  */
 
-package exteded;
+package extended;
 
 import java.util.Random;
 
