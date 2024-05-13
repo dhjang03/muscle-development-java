@@ -109,7 +109,7 @@ public class Patch {
         double offset = 1 / (1 + Math.exp(-0.5));
 
         // amount of hormone level that needs to be changed.
-        double delta = (1 / (1 + Math.exp(-config.getNutritionQuality()))) - offset;
+        double delta = 0.5 * ((1 / (1 + Math.exp(-config.getNutritionQuality()))) - offset);
 
         anabolicHormone += anabolicHormone * delta;
         catabolicHormone -= catabolicHormone * delta;
