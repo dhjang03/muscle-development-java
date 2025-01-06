@@ -47,6 +47,8 @@ The **Muscle Development Simulation Model** simulates muscle development by abst
 
 The simulation extends the base model by incorporating nutrition quality effects using sigmoid functions to model hormone responses. The system is structured into five main classes:
 
+![Extended_Model_Design](https://github.com/user-attachments/assets/5e15ae91-1c51-444b-9d7e-e9dc60721e70)
+
 #### 1. Global
 - **Responsibilities**:
   - Initializes configuration from command line arguments.
